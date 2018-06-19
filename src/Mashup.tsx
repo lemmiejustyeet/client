@@ -44,7 +44,7 @@ export default class Mashup extends React.Component<{ song: ISong, controller: M
                     <audio controls={true} className="audio">
                         <source src={song.url}/>
                     </audio>
-                    <div className={`ratings ${this.props.currentuser ? "enabled" : "disabled"}`} data-tip={this.props.currentuser ? null : "Sign In to vote"}>
+                    <div className={`ratings ${this.props.currentuser ? "enabled" : "disabled"}`} data-tip={this.props.currentuser ? null : "Login to vote"}>
                         <div className={`up ${this.uservote === "up" ? "select" : ""}`} onClick={this.voteup}><FontAwesomeIcon icon={faThumbsUp}/>{song.ratings && song.ratings.up.length}</div>
                         <div className={`down ${this.uservote === "down" ? "select" : ""}`} onClick={this.votedown}><FontAwesomeIcon icon={faThumbsDown}/>{song.ratings && song.ratings.down.length}</div>
                     </div>
