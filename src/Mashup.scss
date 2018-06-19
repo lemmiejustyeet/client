@@ -1,10 +1,11 @@
 .mashup {
     position: relative;
     display: block;
-    background: yellow;
+    background: grey;
     margin: 30px 50px;
     height: 150px;
     box-shadow: 10px 10px 10px black;
+    border: 1px solid black;
     img {
         position: absolute;
         top: 0;
@@ -24,7 +25,7 @@
             font-size: 25px;
             font-weight: bold;
             display: inline-block;
-            margin-right: 10px
+            margin-right: 10px;
         }
         .othersongs {
             margin-left: -80px;
@@ -36,6 +37,7 @@
             width: calc(100% - 25px);
             margin-right: 25px;
             height: 40px;
+            margin-bottom: 10px;
         }
         .date {
             display: inline-block;
@@ -43,9 +45,9 @@
             font-size: 10px;
         }
         .ratings {
+            float: left;
             &.disabled {
-                color: grey;
-                background: red;
+                color: #808080;
             }
             * {
                 display: inline-block;
@@ -55,29 +57,44 @@
             }
             .select {
                 &.up {
-                    color: green;
+                    color: #008000;
                 }
                 &.down {
-                    color: red;
+                    color: #ff0000;
                 }
             }
         }
-        .download {
-            color: black;
-            cursor: pointer;
-            &:hover {
-                opacity: .5;
+        .floatright {
+            float: right;
+            margin-right: 20px;
+            * {
+                margin: 0 2px;
             }
-            user-select: none;
-            display: inline-block;
-        }
-        .elevated {
-            display: inline-block;
-            .delete {
+            .download {
+                color: #000000;
+                cursor: pointer;
+                &:hover {
+                    color: #999999;
+                }
+                user-select: none;
                 display: inline-block;
             }
-            .edit {
+            .elevated {
                 display: inline-block;
+                .delete {
+                    cursor: pointer; 
+                    display: inline-block;
+                    &:hover {
+                        color: #FF0000;
+                    }
+                }
+                .edit {
+                    cursor: pointer; 
+                    display: inline-block;
+                    &:hover {
+                        color: #999999;
+                    }
+                }
             }
         }
     }
@@ -87,7 +104,33 @@
         left: 50px;
         height: 0;
         z-index: 1;
-        border-top: 150px solid white;
+        border-top: 150px solid #ffffff;
         border-left: 150px solid transparent;
+    }
+}
+
+.confirm {
+    user-select: none;
+    .head {
+        font-weight: bolder;
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    .yes {
+        cursor: pointer;
+        background-color: #b63232;
+        border-radius: 3px;
+        display: inline-block;
+        padding: 5px 10px;
+        color: #ffffff;
+        margin-right: 10px;
+    }
+    .no {
+        cursor: pointer;        
+        background-color: #000000;
+        border-radius: 3px;
+        display: inline-block;
+        padding: 5px 10px;
+        color: white;
     }
 }

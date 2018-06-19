@@ -4,8 +4,10 @@ import { deleteSong, ISong, IUser, voteSong } from "./comm";
 import "./Mashup.css";
 import MashupController from "./MashupController";
 
-import { faDownload, faEdit, faThumbsDown, faThumbsUp, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faDownload, faEdit, faThumbsDown, faThumbsUp, faTimes, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon }  from "@fortawesome/react-fontawesome";
+
+import * as ReactTooltip from "react-tooltip";
 
 Modal.setAppElement("#root");
 
@@ -42,35 +44,38 @@ export default class Mashup extends React.Component<{ song: ISong, controller: M
                     <audio controls={true} className="audio">
                         <source src={song.url}/>
                     </audio>
-                    <div className={`ratings ${this.props.currentuser ? "enabled" : "disabled"}`}>
+                    <div className={`ratings ${this.props.currentuser ? "enabled" : "disabled"}`} data-tip={this.props.currentuser ? null : "Sign In to vote"}>
                         <div className={`up ${this.uservote === "up" ? "select" : ""}`} onClick={this.voteup}><FontAwesomeIcon icon={faThumbsUp}/>{song.ratings && song.ratings.up.length}</div>
                         <div className={`down ${this.uservote === "down" ? "select" : ""}`} onClick={this.votedown}><FontAwesomeIcon icon={faThumbsDown}/>{song.ratings && song.ratings.down.length}</div>
                     </div>
-                    <a href={song.url} className="download" target="_blank"><FontAwesomeIcon icon={faDownload}/></a>
-                    {
-                        this.props.currentuser && this.props.currentuser.elevated 
-                        ? <div className="elevated">
-                            <div onClick={this.promptremove} className="delete"><FontAwesomeIcon icon={faTrashAlt}/></div>
-                            <div className="edit"><FontAwesomeIcon icon={faEdit}/></div>
-                        </div>
-                        : ""
-                    }
+                    <div className="floatright">
+                        <a href={song.url} className="download" target="_blank"><FontAwesomeIcon icon={faDownload}/></a>
+                        {
+                            this.props.currentuser && this.props.currentuser.elevated 
+                            ? <div className="elevated">
+                                <div onClick={this.promptremove} className="delete"><FontAwesomeIcon icon={faTrashAlt}/></div>
+                                <div className="edit"><FontAwesomeIcon icon={faEdit}/></div>
+                            </div>
+                            : ""
+                        }
+                    </div>
                 </div>
                 <div className="trap"/>
                 <img className="background" src={song.image_url} />
                 <Modal isOpen={this.state.modalIsOpen} style={{content: {
-                    height: "100px",
+                    height: "82px",
                     left: "50%",
                     top: "50%",
                     transform: "translate(-50%, -50%)",
-                    width: "300px"
+                    width: "200px",
                 }, overlay: {"z-index": "10000000000"}}}>
                     <div className="confirm">
                         <div className="head">Are you sure?</div>
-                        <div className="yes" onClick={this.remove}>YES</div>
-                        <div className="no" onClick={this.hidemodal}>NO</div>
+                        <div className="yes" onClick={this.remove}>Delete <FontAwesomeIcon icon={faTrashAlt}/></div>
+                        <div className="no" onClick={this.hidemodal}>Cancel <FontAwesomeIcon icon={faTimes}/></div>
                     </div>
                 </Modal>
+                <ReactTooltip effect="solid" place="right" type="info"/>
             </div>
         );
     }

@@ -5,7 +5,7 @@
         margin-top: 35px;
         width: 100%;
         height: 300px;
-        background: red;
+        background: #808080;
         background-image: url("/DriveThru.png");
         background-size: 100%;
         background-repeat: no-repeat;
@@ -17,6 +17,7 @@
             transform: translate(-50%, -50%);
             font-size: 30px;
             font-weight: bold;
+            color: #ffffff;
         }
         .bar {
             z-index: 1000000000;
@@ -26,13 +27,14 @@
             right: -10px;
             height: 35px;
             background: #FFFFFF;
+            color: #000000;
             padding: 0px 10px;
             &.notop {
-                box-shadow: 0px 0px 15px black;
+                box-shadow: 0px 0px 15px #000000;
             }
             a {
                 text-decoration: none;
-                color: black;
+                color: #000000;
                 display: inline-block;
                 padding: 5px 10px;
                 &.link:hover {
@@ -51,11 +53,11 @@
                         vertical-align: bottom;
                         height: 20px;
                         border-radius: 100px;
-                        border: 1px solid rgb(95, 95, 95);
+                        border: 1px solid #5f5f5f;
                     }
                     .logoutbutton {
                         &:hover {
-                            color: rgb(172, 0, 0);
+                            color: #ac0000;
                         }
                         font-weight: bold;
                         cursor: pointer;
@@ -65,7 +67,7 @@
         }
     }
     .mashups {
-        background: black;
+        background: white;
         padding: 10px 0;
         overflow: hidden;
     }

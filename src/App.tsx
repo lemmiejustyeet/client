@@ -37,10 +37,10 @@ export default class App extends React.Component<{}, IAppState> {
         return (
             <div className="app">
                 <div className="header">
-                    <div className="title">Matt's Mashups</div>
+                    <div className="title">Drawbits' Drive-Thru</div>
                     <div className={`bar ${this.state.isTop ? "top" : "notop"}`}>
                         <div className="left">
-                            <a className="link">Matt's Mashups</a>
+                            <a className="link">Drawbits' Drive-Thru</a>
                         </div>
                         <div className="right">
                             {
