@@ -95,14 +95,36 @@ export default class Mashup extends React.Component<{ song: ISong, controller: M
     }
 
     private voteup = async () => {
-        if (this.props.currentuser && this.uservote !== "up") {
+        if (this.props.currentuser) {
+            if (this.props.song.ratings.up.indexOf(this.props.currentuser.id) !== -1) {
+                this.props.song.ratings.up.splice(this.props.song.ratings.up.indexOf(this.props.currentuser.id), 1);
+            } else {
+                this.props.song.ratings.up.push(this.props.currentuser.id);
+            }
+            if (this.props.song.ratings.down.indexOf(this.props.currentuser.id) !== -1) {
+                this.props.song.ratings.down.splice(this.props.song.ratings.down.indexOf(this.props.currentuser.id), 1);
+            }
+
+            this.forceUpdate();
+
             await voteSong(this.props.song._id, "up");
             await this.props.controller.refresh();
         }
     }
 
     private votedown = async () => {
-        if (this.props.currentuser && this.uservote !== "down") {
+        if (this.props.currentuser) {
+            if (this.props.song.ratings.down.indexOf(this.props.currentuser.id) !== -1) {
+                this.props.song.ratings.down.splice(this.props.song.ratings.down.indexOf(this.props.currentuser.id), 1);
+            } else {
+                this.props.song.ratings.down.push(this.props.currentuser.id);
+            }
+            if (this.props.song.ratings.up.indexOf(this.props.currentuser.id) !== -1) {
+                this.props.song.ratings.up.splice(this.props.song.ratings.up.indexOf(this.props.currentuser.id), 1);
+            }
+
+            this.forceUpdate();
+
             await voteSong(this.props.song._id, "down");
             await this.props.controller.refresh();
         }
