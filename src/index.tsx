@@ -1,8 +1,8 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import App from './App';
-import './index.css';
-import registerServiceWorker from './registerServiceWorker';
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import App from "./App";
+import "./index.css";
+import registerServiceWorker from "./registerServiceWorker";
 
 if (location.hash.substring(1)) {
     if (location.hash.substring(1) === "revoked") {
@@ -17,6 +17,6 @@ if (location.hash.substring(1)) {
 
 ReactDOM.render(
     <App />,
-    document.getElementById('root') as HTMLElement
+    document.getElementById("root") as HTMLElement
 );
 registerServiceWorker();

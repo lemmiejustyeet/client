@@ -7,8 +7,8 @@ export interface ISong {
     url: string;
     othersongs?: string[];
     ratings: {
-        up: number;
-        down: number;
+        up: string[];
+        down: string[];
     };
 }
 
@@ -100,6 +100,17 @@ export async function deleteSong(id: string): Promise<ICouchResponse | ICouchErr
             "Authorization": `Bearer ${localStorage.getItem("discordauthkey")}`,
         },
         method: "DELETE",
+        mode: "cors"
+    });
+    return await response.json();
+}
+
+export async function voteSong(id: string, vote: "up" | "down"): Promise<ICouchResponse | ICouchError> {
+    const response = await fetch(`https://dusterthefirst.ddns.net:38564/songs/${id}/vote?v=${vote}`, {
+        headers: {
+            "Authorization": `Bearer ${localStorage.getItem("discordauthkey")}`,
+        },
+        method: "GET",
         mode: "cors"
     });
     return await response.json();

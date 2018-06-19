@@ -1,0 +1,93 @@
+.mashup {
+    position: relative;
+    display: block;
+    background: yellow;
+    margin: 30px 50px;
+    height: 150px;
+    box-shadow: 10px 10px 10px black;
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        z-index: 0;
+    }
+    .info {
+        position: relative;
+        margin-left: 200px;
+        background: white;
+        z-index: 100;
+        height: 100%;
+
+        .title {
+            margin-left: -100px;
+            font-size: 25px;
+            font-weight: bold;
+            display: inline-block;
+            margin-right: 10px
+        }
+        .othersongs {
+            margin-left: -80px;
+            font-weight: lighter;
+            font-size: 10px;
+            margin-bottom: 10px;
+        }
+        .audio {
+            width: calc(100% - 25px);
+            margin-right: 25px;
+            height: 40px;
+        }
+        .date {
+            display: inline-block;
+            font-weight: lighter;
+            font-size: 10px;
+        }
+        .ratings {
+            &.disabled {
+                color: grey;
+                background: red;
+            }
+            * {
+                display: inline-block;
+                margin: 0 10px;
+                cursor: pointer;
+                user-select: none;
+            }
+            .select {
+                &.up {
+                    color: green;
+                }
+                &.down {
+                    color: red;
+                }
+            }
+        }
+        .download {
+            color: black;
+            cursor: pointer;
+            &:hover {
+                opacity: .5;
+            }
+            user-select: none;
+            display: inline-block;
+        }
+        .elevated {
+            display: inline-block;
+            .delete {
+                display: inline-block;
+            }
+            .edit {
+                display: inline-block;
+            }
+        }
+    }
+    .trap {
+        position: absolute;
+        top: 0;
+        left: 50px;
+        height: 0;
+        z-index: 1;
+        border-top: 150px solid white;
+        border-left: 150px solid transparent;
+    }
+}

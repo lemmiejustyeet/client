@@ -11,11 +11,10 @@ export default class MashupController extends React.Component<{sort?: string, cu
             songs: []
         };
 
-        (async () => {
-            this.setState({
-                songs: await getAllSongs()
-            });
-        })();
+        this.refresh();
+
+        // REFRESH EVERY 10 MINUTES
+        setInterval(this.refresh, 1000 * 60 * 10);
     }
 
     public render() {
@@ -30,7 +29,7 @@ export default class MashupController extends React.Component<{sort?: string, cu
         );
     }
 
-    public async refresh() {
+    public refresh = async () => {
         this.setState({
             songs: await getAllSongs()
         });

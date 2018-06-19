@@ -19,14 +19,16 @@
             font-weight: bold;
         }
         .bar {
+            z-index: 1000000000;
             position: fixed;
             top: 0;
-            left: 0;
-            right: 0;
+            left: -10px;
+            right: -10px;
             height: 35px;
             background: #FFFFFF;
+            padding: 0px 10px;
             &.notop {
-                box-shadow: 0px 2px 10px black;
+                box-shadow: 0px 0px 15px black;
             }
             a {
                 text-decoration: none;
@@ -61,5 +63,10 @@
                 }
             }
         }
+    }
+    .mashups {
+        background: black;
+        padding: 10px 0;
+        overflow: hidden;
     }
 }
