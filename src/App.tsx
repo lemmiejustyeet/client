@@ -16,6 +16,7 @@ interface IAppState {
 export default class App extends React.Component<{}, IAppState> {
 
     private controller = React.createRef<MashupController>();
+    private updatetimer?: NodeJS.Timer;
 
     constructor(props: any, context: any) {
         super(props, context);
@@ -30,6 +31,18 @@ export default class App extends React.Component<{}, IAppState> {
                 currentuser: await getDiscordUser()
             });
         })();
+
+        window.onresize = () => {
+            this.update();
+        };
+    }
+
+    public update() {
+        if (this.updatetimer) {
+            clearInterval(this.updatetimer);
+            this.updatetimer = undefined;
+        }
+        this.updatetimer = setTimeout(() => {this.forceUpdate(); this.updatetimer = undefined;}, 100);
     }
 
     public componentDidMount() {
@@ -54,9 +67,9 @@ export default class App extends React.Component<{}, IAppState> {
                             {
                                 this.state.currentuser
                                     ? <span className="logout">
-                                        <a onClick={this.preventDefault}>
+                                        <a onClick={this.preventDefault} className="user">
                                             <img src={`https://cdn.discordapp.com/avatars/${this.state.currentuser && this.state.currentuser.id}/${this.state.currentuser && this.state.currentuser.avatar}.png`} />
-                                            <span className="username">{this.state.currentuser && this.state.currentuser.username}</span><span className="descriminator">#{this.state.currentuser && this.state.currentuser.discriminator}</span>
+                                            <span className="username">{this.state.currentuser && this.state.currentuser.username}</span><span className="discriminator">#{this.state.currentuser && this.state.currentuser.discriminator}</span>
                                         </a>
                                         <a className="logoutbutton" onClick={this.logout}>
                                             Sign out
@@ -84,7 +97,7 @@ export default class App extends React.Component<{}, IAppState> {
                     left: "50%",
                     top: "50%",
                     transform: "translate(-50%, -50%)",
-                    width: "600px",
+                    width: window.innerWidth > 640 ? "600px" : `${window.innerWidth - 100}px`,
                 }, overlay: {zIndex: "10000000000", background: "#000000AA"}}}>
                     <AddSong song={{} as any} hide={this.hideAddModal} onApply={this.addSongToServer}/>
                 </Modal>

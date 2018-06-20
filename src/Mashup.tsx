@@ -42,7 +42,7 @@ export default class Mashup extends React.Component<{ song: ISong, controller: M
                             year: "numeric"
                         })
                     }</div>
-                    <div className="othersongs">({song.othersongs && song.othersongs.join(", ")})</div>
+                    <div className="othersongs">{song.othersongs ? `(${song.othersongs && song.othersongs.join(", ")})` : "Unknown other songs"}</div>
                     <audio controls={true} className="audio">
                         <source src={song.url}/>
                     </audio>
@@ -84,7 +84,7 @@ export default class Mashup extends React.Component<{ song: ISong, controller: M
                     left: "50%",
                     top: "50%",
                     transform: "translate(-50%, -50%)",
-                    width: "600px",
+                    width:  window.innerWidth > 640 ? "600px" : `${window.innerWidth - 100}px`,
                 }, overlay: {zIndex: "10000000000", background: "#000000AA"}}}>
                     <AddSong song={this.props.song} hide={this.hideeditmodal} onApply={this.applychanges}/>
                 </Modal>
