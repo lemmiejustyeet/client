@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as Modal from "react-modal";
-import { deleteSong, ISong, IUser, voteSong } from "./comm";
+import { deleteSong, ISong, IUser, updateSong, voteSong } from "./comm";
 import "./Mashup.css";
 import MashupController from "./MashupController";
 
@@ -8,16 +8,18 @@ import { faDownload, faEdit, faThumbsDown, faThumbsUp, faTimes, faTrashAlt } fro
 import { FontAwesomeIcon }  from "@fortawesome/react-fontawesome";
 
 import * as ReactTooltip from "react-tooltip";
+import AddSong from "./AddSong";
 
 Modal.setAppElement("#root");
 
-export default class Mashup extends React.Component<{ song: ISong, controller: MashupController, currentuser?: IUser }, { modalIsOpen: boolean }> {
+export default class Mashup extends React.Component<{ song: ISong, controller: MashupController, currentuser?: IUser }, { deleteModalOpen: boolean, editModalOpen: boolean}> {
 
     constructor(props: any, context: any) {
         super(props, context);
 
         this.state = {
-            modalIsOpen: false
+            deleteModalOpen: false,
+            editModalOpen: false
         };
     }
 
@@ -54,26 +56,37 @@ export default class Mashup extends React.Component<{ song: ISong, controller: M
                             this.props.currentuser && this.props.currentuser.elevated 
                             ? <div className="elevated">
                                 <div onClick={this.promptremove} className="delete"><FontAwesomeIcon icon={faTrashAlt}/></div>
-                                <div className="edit"><FontAwesomeIcon icon={faEdit}/></div>
+                                <div onClick={this.editsong} className="edit"><FontAwesomeIcon icon={faEdit}/></div>
                             </div>
                             : ""
                         }
                     </div>
                 </div>
                 <div className="trap"/>
-                <img className="background" src={song.image_url} />
-                <Modal isOpen={this.state.modalIsOpen} style={{content: {
+                {
+                    song.image_url ? <img className="background" src={song.image_url} /> : null
+                }
+                <Modal isOpen={this.state.deleteModalOpen} style={{content: {
                     height: "82px",
                     left: "50%",
                     top: "50%",
                     transform: "translate(-50%, -50%)",
                     width: "200px",
-                }, overlay: {"z-index": "10000000000"}}}>
+                }, overlay: {zIndex: "10000000000", background: "#000000AA"}}}>
                     <div className="confirm">
                         <div className="head">Are you sure?</div>
                         <div className="yes" onClick={this.remove}>Delete <FontAwesomeIcon icon={faTrashAlt}/></div>
-                        <div className="no" onClick={this.hidemodal}>Cancel <FontAwesomeIcon icon={faTimes}/></div>
+                        <div className="no" onClick={this.hidedeletemodal}>Cancel <FontAwesomeIcon icon={faTimes}/></div>
                     </div>
+                </Modal>
+                <Modal isOpen={this.state.editModalOpen} style={{content: {
+                    height: "400px",
+                    left: "50%",
+                    top: "50%",
+                    transform: "translate(-50%, -50%)",
+                    width: "600px",
+                }, overlay: {zIndex: "10000000000", background: "#000000AA"}}}>
+                    <AddSong song={this.props.song} hide={this.hideeditmodal} onApply={this.applychanges}/>
                 </Modal>
                 <ReactTooltip effect="solid" place="right" type="info"/>
             </div>
@@ -83,14 +96,33 @@ export default class Mashup extends React.Component<{ song: ISong, controller: M
     private promptremove = (e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
         this.setState({
-            modalIsOpen: true
+            deleteModalOpen: true
         });
     }
 
-    private hidemodal = () => {
+    private hidedeletemodal = () => {
         this.setState({
-            modalIsOpen: false
+            deleteModalOpen: false
         });
+    }
+
+    private editsong = (e: React.MouseEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        this.setState({
+            editModalOpen: true
+        });
+    }
+
+    private hideeditmodal = () => {
+        this.setState({
+            editModalOpen: false
+        });
+    }
+
+    private applychanges = async (song: ISong) => {
+        await updateSong(song, song._id);
+        await this.props.controller.refresh();
+        this.hideeditmodal();
     }
 
     private remove = async () => {

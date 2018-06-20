@@ -1,0 +1,76 @@
+.addsong {
+    div {
+        span {
+            font-weight: bold;
+            display: block;
+        }
+    }
+    input {
+        margin-bottom: 10px;
+        display: block;
+        width: 100%;
+    }
+    .songs input:last-child {
+        margin-bottom: 0;
+    }
+    .add {
+        background: #008000;
+        display: inline-block;
+        padding: 3px 7px;
+        border-radius: 10px;
+        width: 20px;
+        text-align: center;
+        margin: 10px 5px;
+        color: #FFFFFF;
+        cursor: pointer;
+        &:hover {
+            background: #007000;
+        }
+    }
+    .remove {
+        background: #990000;
+        display: inline-block;
+        padding: 3px 7px;
+        border-radius: 10px;
+        width: 20px;
+        text-align: center;
+        margin: 10px 5px;
+        color: #FFFFFF;
+        cursor: pointer;
+        &.disable {
+            background: #808080;
+            &:hover {
+                background: #803030;
+            }
+            color: #424242;
+            cursor: not-allowed;
+        }
+        &:hover {
+            background: #800000;
+        }
+    }
+    .close {
+        background: #990000;
+        display: inline-block;
+        padding: 3px 7px;
+        border-radius: 10px;
+        margin: 10px 5px;
+        color: #FFFFFF;
+        cursor: pointer;
+        &:hover {
+            background: #800000;
+        }
+    }
+    .ok {
+        background: #008000;
+        display: inline-block;
+        padding: 3px 7px;
+        border-radius: 10px;
+        margin: 10px 5px;
+        color: #FFFFFF;
+        cursor: pointer;
+        &:hover {
+            background: #007000;
+        }
+    }
+}

@@ -4,7 +4,6 @@
     background: grey;
     margin: 30px 50px;
     height: 150px;
-    box-shadow: 10px 10px 10px black;
     border: 1px solid black;
     img {
         position: absolute;
@@ -124,6 +123,9 @@
         padding: 5px 10px;
         color: #ffffff;
         margin-right: 10px;
+        &:hover {
+            background-color: #802727;
+        }
     }
     .no {
         cursor: pointer;        
@@ -132,5 +134,8 @@
         display: inline-block;
         padding: 5px 10px;
         color: white;
+        &:hover {
+            background-color: #3b3b3b;
+        }
     }
 }
