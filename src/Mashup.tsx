@@ -126,6 +126,10 @@ export default class Mashup extends React.Component<{ song: ISong, controller: M
     }
 
     private remove = async () => {
+        this.setState({
+            deleteModalOpen: false
+        });
+
         await deleteSong(this.props.song._id);
 
         await this.props.controller.refresh();

@@ -12,7 +12,7 @@ if (location.hash.substring(1)) {
     }
 
     location.hash = "";
-    history.replaceState(null, document.title, "/");
+    history.replaceState(null, document.title, window.location.pathname);
 }
 
 ReactDOM.render(

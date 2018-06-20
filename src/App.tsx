@@ -106,7 +106,7 @@ export default class App extends React.Component<{}, IAppState> {
     }
 
     public logout = (event: React.MouseEvent<HTMLAnchorElement>) => {
-        window.location.href = `https://dusterthefirst.ddns.net:38564/auth/discord/token/revoke?code=${window.localStorage.getItem("discordauthkey")}`;
+        window.location.href = `https://dusterthefirst.ddns.net:38564/auth/discord/token/revoke?code=${window.localStorage.getItem("discordauthkey")}&redirect=${location.href}`;
         this.forceUpdate();
     }
 

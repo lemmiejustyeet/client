@@ -4,9 +4,9 @@
     "private": true,
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/lemmiejustyeet/lemmiejustyeet.github.io.git"
+        "url": "git+https://github.com/lemmiejustyeet/client.git"
     },
-    "homepage": "https://github.com/lemmiejustyeet/lemmiejustyeet.github.io",
+    "homepage": "http://lemmiejustyeet.github.io/client",
     "dependencies": {
         "@fortawesome/fontawesome": "^1.1.8",
         "@fortawesome/fontawesome-svg-core": "^1.2.0-14",
