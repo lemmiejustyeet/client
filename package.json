@@ -1,33 +1,41 @@
 {
-  "name": "mashclient",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@fortawesome/fontawesome": "^1.1.8",
-    "@fortawesome/fontawesome-svg-core": "^1.2.0-14",
-    "@fortawesome/free-brands-svg-icons": "^5.1.0-11",
-    "@fortawesome/free-regular-svg-icons": "^5.1.0-11",
-    "@fortawesome/free-solid-svg-icons": "^5.1.0-11",
-    "@fortawesome/react-fontawesome": "0.1.0-11",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
-    "react-modal": "^3.4.5",
-    "react-scripts-ts": "2.16.0",
-    "react-tooltip": "^3.6.1"
-  },
-  "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
-    "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
-  },
-  "devDependencies": {
-    "@types/jest": "^23.0.0",
-    "@types/node": "^10.3.2",
-    "@types/react": "^16.3.17",
-    "@types/react-dom": "^16.0.6",
-    "@types/react-modal": "^3.1.2",
-    "@types/react-tooltip": "^3.3.5",
-    "typescript": "^2.9.1"
-  }
+    "name": "mashclient",
+    "version": "0.1.0",
+    "private": true,
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/lemmiejustyeet/lemmiejustyeet.github.io.git"
+    },
+    "homepage": "https://github.com/lemmiejustyeet/lemmiejustyeet.github.io",
+    "dependencies": {
+        "@fortawesome/fontawesome": "^1.1.8",
+        "@fortawesome/fontawesome-svg-core": "^1.2.0-14",
+        "@fortawesome/free-brands-svg-icons": "^5.1.0-11",
+        "@fortawesome/free-regular-svg-icons": "^5.1.0-11",
+        "@fortawesome/free-solid-svg-icons": "^5.1.0-11",
+        "@fortawesome/react-fontawesome": "0.1.0-11",
+        "react": "^16.4.0",
+        "react-dom": "^16.4.0",
+        "react-modal": "^3.4.5",
+        "react-scripts-ts": "2.16.0",
+        "react-tooltip": "^3.6.1"
+    },
+    "scripts": {
+        "start": "react-scripts-ts start",
+        "build": "react-scripts-ts build",
+        "test": "react-scripts-ts test --env=jsdom",
+        "eject": "react-scripts-ts eject",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d build"
+    },
+    "devDependencies": {
+        "@types/jest": "^23.0.0",
+        "@types/node": "^10.3.2",
+        "@types/react": "^16.3.17",
+        "@types/react-dom": "^16.0.6",
+        "@types/react-modal": "^3.1.2",
+        "@types/react-tooltip": "^3.3.5",
+        "gh-pages": "^1.2.0",
+        "typescript": "^2.9.1"
+    }
 }
