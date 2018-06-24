@@ -9,6 +9,7 @@ import { FontAwesomeIcon }  from "@fortawesome/react-fontawesome";
 
 import * as ReactTooltip from "react-tooltip";
 import AddSong from "./AddSong";
+import AudioPlayer from "./AudioPlayer";
 
 Modal.setAppElement("#root");
 
@@ -43,9 +44,7 @@ export default class Mashup extends React.Component<{ song: ISong, controller: M
                         })
                     }</div>
                     <div className="othersongs">{song.othersongs ? `(${song.othersongs && song.othersongs.join(", ")})` : "Unknown other songs"}</div>
-                    <audio controls={true} className="audio">
-                        <source src={song.url}/>
-                    </audio>
+                    <AudioPlayer src={song.url}/>
                     <div className={`ratings ${this.props.currentuser ? "enabled" : "disabled"}`} data-tip={this.props.currentuser ? null : "Login to vote"}>
                         <div className={`up ${this.uservote === "up" ? "select" : ""}`} onClick={this.voteup}><FontAwesomeIcon icon={faThumbsUp}/>{song.ratings && song.ratings.up.length}</div>
                         <div className={`down ${this.uservote === "down" ? "select" : ""}`} onClick={this.votedown}><FontAwesomeIcon icon={faThumbsDown}/>{song.ratings && song.ratings.down.length}</div>
@@ -53,7 +52,7 @@ export default class Mashup extends React.Component<{ song: ISong, controller: M
                     <div className="floatright">
                         <a href={song.url} className="download" target="_blank"><FontAwesomeIcon icon={faDownload}/></a>
                         {
-                            this.props.currentuser && this.props.currentuser.elevated 
+                            this.props.currentuser && this.props.currentuser.elevated
                             ? <div className="elevated">
                                 <div onClick={this.promptremove} className="delete"><FontAwesomeIcon icon={faTrashAlt}/></div>
                                 <div onClick={this.editsong} className="edit"><FontAwesomeIcon icon={faEdit}/></div>
